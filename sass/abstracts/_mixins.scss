@@ -12,3 +12,74 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+///media query manager
+/*
+0-600px:  phone
+600-900px: tablet portrait
+900-1200px: tablet landscape
+[1200-1800]-is us web here
+189px + : big desktop*/
+
+@mixin respond-phone {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+
+/* 
+$breakpoint argument choices:
+-phone
+-tab-port
+-tab-land
+-big-desktop
+*/
+
+// ----------------------------------------------------
+// 1em = 16px
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      //600
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) {
+      //900
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media (max-width: 75em) {
+      //1200
+      @content;
+    }
+  }
+
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em) {
+      //1800
+      @content;
+    }
+  }
+}
+
+// @include respond(phone) {
+//     font-size: 50%;
+//   }
+
+//   @include respond(tab-port) {
+//     font-size: 50%;
+//   }
+
+//   @include respond(tab-land) {
+//     font-size: 50%;
+//   }
+
+//   @include respond(big-desktop) {
+//     font-size: 50%;
+//   }
